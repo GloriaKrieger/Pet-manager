@@ -1,0 +1,41 @@
+
+    {
+        "id": 1,
+        "petCode": "12345",
+        "name": "Virsik",
+        "type": "dog",
+        "color": "orange",
+        "country": "Estonia"
+    },
+    {
+        "id": 2,
+        "petCode": "23456",
+        "name": "Mooses",
+        "type": "cat",
+        "color": "brown",
+        "country": "Germany"
+    },
+    {
+        "id": 3,
+        "petCode": "34567",
+        "name": "Vincent",
+        "type": "dog",
+        "color": "black",
+        "country": "Finland"
+    },
+    {
+        "id": 4,
+        "petCode": "45678",
+        "name": "Timmu",
+        "type": "rabbit",
+        "color": "white",
+        "country": "Estonia"
+    },
+    {
+        "id": 5,
+        "petCode": "56789",
+        "name": "Miki",
+        "type": "mouse",
+        "color": "gray",
+        "country": "USA"
+    }
