@@ -1,0 +1,244 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
+  integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
+  integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc="
+  crossorigin="anonymous"
+/>
+
+<body>
+  <div class="container-fluid mt-5 d-flex justify-content-center">
+    <h1>Pets</h1>
+  </div>
+  <div>
+    <button
+      type="button"
+      id="add"
+      class="btn btn-primary"
+      [routerLink]="['/add-pet']"
+    >
+      Add pets
+    </button>
+  </div>
+  <div class="container-fluid d-flex justify-content-center">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col-auto">#</th>
+          <th scope="col-auto">Name</th>
+          <th scope="col-auto">Code</th>
+          <th scope="col-auto">Type</th>
+          <th scope="col-auto">Fur Color</th>
+          <th scope="col-auto">Country</th>
+          <th scope="col-auto"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pet of pets; let indexOfelement = index">
+          <th scope="row">{{ indexOfelement + 1 }}</th>
+          <td>{{ pet?.name }}</td>
+          <td>{{ pet?.petCode }}</td>
+          <td>{{ pet?.type }}</td>
+          <td>{{ pet?.color }}</td>
+          <td>{{ pet?.country }}</td>
+          <td>
+            <div class="container">
+              <a class="mr-4">
+                <span class="fa-stack">
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-toggle="modal"
+                    data-target="#editPetModal"
+                    (click)="getPet(pet)"
+                  >
+                    <i data-original-title="Edit" class="fa fa-pencil"></i>
+                  </button>
+                </span>
+              </a>
+              <a class="mr-4">
+                <span class="fa-stack">
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-toggle="modal"
+                    data-target="#deletePetModal"
+                    (click)="getPet(pet)"
+                  >
+                    <i data-original-title="Delete" class="fa fa-trash"></i>
+                  </button>
+                </span>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="modal fade"
+    id="deletePetModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="deletePetModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deletePetModalLabel">Delete</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete {{ editPet.name }}?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">
+            No
+          </button>
+          <button
+            (click)="onDeletePet(editPet.id)"
+            type="button"
+            class="btn btn-success"
+            data-dismiss="modal"
+          >
+            Yes, delete the pet
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="modal fade"
+    id="editPetModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="editPetModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editPetModal">Edit pet</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #editForm="ngForm">
+            <input
+              type="hidden"
+              ngModel="{{ editPet.id }}"
+              name="id"
+              class="form-control"
+              id="id"
+              placeholder="Name"
+            />
+            <div class="form-group">
+              <label for="inputName">Name</label>
+              <input
+                type="text"
+                ngModel="{{ editPet.name }}"
+                name="name"
+                class="form-control"
+                id="inputName"
+                placeholder="Name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="inputCode">Code</label>
+              <input
+                type="text"
+                ngModel="{{ editPet.petCode }}"
+                name="petCode"
+                class="form-control"
+                id="inputCode"
+                placeholder="Code"
+              />
+            </div>
+            <div class="form-group">
+              <label for="inputType">Type</label>
+              <select
+                id="inputType"
+                ngModel="{{ editPet.type }}"
+                name="type"
+                class="form-control"
+              >
+                <option value="" selected disabled>Choose...</option>
+                <option>Cat</option>
+                <option>Dog</option>
+                <option>Horse</option>
+                <option>Rabbit</option>
+                <option>Parrot</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inputColor">Fur Color</label>
+              <select
+                id="inputColor"
+                ngModel="{{ editPet.color }}"
+                name="color"
+                class="form-control"
+              >
+                <option value="" selected disabled>Choose...</option>
+                <option>Black</option>
+                <option>White</option>
+                <option>Brown</option>
+                <option>Orange</option>
+                <option>Yellow</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inputCountry">Country of origin</label>
+              <select
+                id="inputCountry"
+                ngModel="{{ editPet.country }}"
+                name="country"
+                class="form-control"
+              >
+                <option value="" selected disabled>Choose...</option>
+                <option>Estonia</option>
+                <option>Latvia</option>
+                <option>Lithuania</option>
+                <option>Finland</option>
+                <option>Sweden</option>
+                <option>Norway</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button
+            (click)="onUpdatePet(editForm.value)"
+            data-dismiss="modal"
+            type="button"
+            class="btn btn-success"
+          >
+            Save changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
