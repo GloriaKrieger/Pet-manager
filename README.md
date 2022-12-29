@@ -1,27 +1,24 @@
-# Petmanagerapp
+# Petmanager
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
+Make sure you have downloaded Java version 19 and Node.js version 19.3.0.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Before running you need to install Angular CLI by running `npm install -g @angular/cli` or just `npm install`.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 
-## Code scaffolding
+## Back-end
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run PetmanagerApplication.java to start. 
+Navigate to `http://localhost:4200/pet` and use paths written in PetController.java file.
 
-## Build
+## H2 Database Engine
+To access H2 console:\
+Navigate to `http://localhost:8080/h2-console` and insert following:
+JDBC URL: jdbc:h2:petmanager
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+User Name: sa
 
-## Running unit tests
+Password: password
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+OR look to application.properties file for information. 
